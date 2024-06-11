@@ -8,11 +8,10 @@ using Mvc.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Remove logging as this is not required for the benchmark
 #if LOGGING_ENABLED
-builder.Logging.ClearProviders();
-builder.Logging.AddConsole();
-builder.Logging.AddDebug();
+builder.Services.AddHttpLogging(o => { });
 Console.WriteLine("Logging is enabled!");
 #else
 builder.Logging.ClearProviders();
@@ -40,14 +39,8 @@ builder.Services.AddSingleton(serviceProvider =>
 
 var app = builder.Build();
 
-// Enable logging of each request
 #if LOGGING_ENABLED
-app.Use(async (context, next) =>
-{
-    var logger = app.Logger;
-    logger.LogInformation("Handling request: {Method} {Path}", context.Request.Method, context.Request.Path);
-    await next.Invoke();
-});
+app.UseHttpLogging();
 #endif
 
 app.UseRouting();
