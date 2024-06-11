@@ -12,7 +12,7 @@
   <PropertyGroup>
     <DefineConstants Condition=" '$(DatabaseProvider)' == '' or '$(DatabaseProvider)' == 'Npgsql'">$(DefineConstants);NPGSQL</DefineConstants>
     <DefineConstants Condition=" '$(DatabaseProvider)' == 'MySqlConnector' ">$(DefineConstants);MYSQLCONNECTOR</DefineConstants>
-    <DefineConstants Condition=" '$(Logging)' == 'true' ">$(DefineConstants);LOGGING_ENABLE</DefineConstants>
+    <DefineConstants Condition=" '$(Logging)' == 'true' ">$(DefineConstants);LOGGING_ENABLED</DefineConstants>
   </PropertyGroup>
   
   <ItemGroup>
