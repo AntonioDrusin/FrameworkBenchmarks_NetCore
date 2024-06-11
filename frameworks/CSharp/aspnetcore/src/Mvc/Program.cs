@@ -40,6 +40,17 @@ builder.Services.AddSingleton(serviceProvider =>
 
 var app = builder.Build();
 
+// Enable logging of each request
+#if LOGGING_ENABLED
+app.Use(async (context, next) =>
+{
+    var logger = app.Logger;
+    logger.LogInformation("Handling request: {Method} {Path}", context.Request.Method, context.Request.Path);
+    await next.Invoke();
+    logger.LogInformation("Finished handling request.");
+});
+#endif
+
 app.UseRouting();
 
 app.MapControllerRoute(
