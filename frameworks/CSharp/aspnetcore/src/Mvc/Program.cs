@@ -47,7 +47,6 @@ app.Use(async (context, next) =>
     var logger = app.Logger;
     logger.LogInformation("Handling request: {Method} {Path}", context.Request.Method, context.Request.Path);
     await next.Invoke();
-    logger.LogInformation("Finished handling request.");
 });
 #endif
 
