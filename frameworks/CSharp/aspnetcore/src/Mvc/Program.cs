@@ -2,6 +2,7 @@ using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.Extensions.Logging;
 using Mvc;
 using Mvc.Database;
 
@@ -9,6 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Remove logging as this is not required for the benchmark
 #if LOGGING_ENABLED
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();
+Console.WriteLine("Logging is enabled!");
 #else
 builder.Logging.ClearProviders();
 #endif
