@@ -8,7 +8,10 @@ using Mvc.Database;
 var builder = WebApplication.CreateBuilder(args);
 
 // Remove logging as this is not required for the benchmark
+#if LOGGING_ENABLED
+#else
 builder.Logging.ClearProviders();
+#endif
 
 // Load custom configuration
 var appSettings = new AppSettings();
