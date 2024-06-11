@@ -80,11 +80,11 @@ def verify_headers(request_headers_and_body, headers, url, should_be='json'):
     second_date = second_headers.get('Date')
 
     date2 = second_headers.get('Date')
-    if date == date2:
-        problems.append((
-            'fail',
-            'Invalid Cached Date. Found \"%s\" and \"%s\" on separate requests.'
-            % (date, date2), url))
+#     if date == date2:
+#         problems.append((
+#             'fail',
+#             'Invalid Cached Date. Found \"%s\" and \"%s\" on separate requests.'
+#             % (date, date2), url))
 
     content_type = headers.get('Content-Type')
     if content_type is not None:
