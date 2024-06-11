@@ -70,6 +70,22 @@ orm = "Full"
 platform = ".NET"
 webserver = "aspnetcore"
 
+[log]
+urls.plaintext = "/plaintext"
+urls.json = "/json"
+urls.db = "/db"
+urls.query = "/queries/"
+urls.fortune = "/fortunes"
+urls.cached_query = "/cached-worlds/"
+approach = "Realistic"
+classification = "Fullstack"
+database = "Postgres"
+database_os = "Linux"
+os = "Linux"
+orm = "Full"
+platform = ".NET"
+webserver = "aspnetcore"
+
 [mysql]
 urls.db = "/db"
 urls.query = "/queries/"

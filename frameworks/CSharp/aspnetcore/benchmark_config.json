@@ -92,6 +92,28 @@
         "notes": "",
         "versus": "aspnetcore"
       },
+      "log": {
+        "plaintext_url": "/plaintext",
+        "json_url": "/json",
+        "db_url": "/db",
+        "query_url": "/queries/",
+        "fortune_url": "/fortunes",
+        "port": 8080,
+        "approach": "Realistic",
+        "classification": "Fullstack",
+        "database": "Postgres",
+        "framework": "ASP.NET Core [MVC]",
+        "language": "C#",
+        "orm": "Full",
+        "platform": ".NET",
+        "flavor": "CoreCLR",
+        "webserver": "Kestrel",
+        "os": "Linux",
+        "database_os": "Linux",
+        "display_name": "ASP.NET Core [MVC, Pg, EF]",
+        "notes": "",
+        "versus": "aspnetcore"
+      },
       "mysql": {
         "db_url": "/db",
         "query_url": "/queries/",
