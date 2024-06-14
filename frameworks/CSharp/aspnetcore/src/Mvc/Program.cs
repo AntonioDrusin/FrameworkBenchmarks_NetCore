@@ -22,6 +22,9 @@ builder.Logging.AddOpenTelemetry(options =>
         otlpOptions.Endpoint = new Uri("http://10.0.2.10:4317");
     });
 });
+
+builder.Services.AddHttpLogging(o => { });
+
 Console.WriteLine("Logging is enabled!");
 #else
 builder.Logging.ClearProviders();
