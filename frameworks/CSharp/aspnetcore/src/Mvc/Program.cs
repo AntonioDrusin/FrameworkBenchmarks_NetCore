@@ -49,10 +49,6 @@ builder.Services.AddSingleton(serviceProvider =>
 
 var app = builder.Build();
 
-#if LOGGING_ENABLED
-app.UseHttpLogging();
-#endif
-
 app.UseRouting();
 
 app.MapControllerRoute(
