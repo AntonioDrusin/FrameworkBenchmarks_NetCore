@@ -19,7 +19,7 @@ builder.Logging.AddOpenTelemetry(options =>
 {
     options.AddOtlpExporter(otlpOptions =>
     {
-        otlpOptions.Endpoint = new Uri("http://10.0.2.10:4317");
+        otlpOptions.Endpoint = new Uri("http://172.30.0.53:4317");
     });
 });
 
