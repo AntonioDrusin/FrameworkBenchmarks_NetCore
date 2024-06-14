@@ -6,7 +6,11 @@ using Mvc;
 using Mvc.Database;
 using OpenTelemetry;
 using OpenTelemetry.Logs;
+using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
+using OpenTelemetry.Instrumentation;
+using OpenTelemetry.Metrics;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +28,21 @@ builder.Logging.AddOpenTelemetry(options =>
 });
 
 builder.Services.AddHttpLogging(o => { });
+
+builder.Services.AddOpenTelemetry()
+    .ConfigureResource(resource => resource.AddService("serviceName"))
+    .WithTracing(tracing => tracing
+        .AddAspNetCoreInstrumentation()
+        .AddOtlpExporter(otlpOptions =>
+        {
+            otlpOptions.Endpoint = new Uri("http://172.30.0.53:4317");
+        }))
+    .WithMetrics(metrics => metrics
+        .AddAspNetCoreInstrumentation()
+        .AddOtlpExporter(otlpOptions =>
+        {
+            otlpOptions.Endpoint = new Uri("http://172.30.0.53:4317");
+        }));
 
 Console.WriteLine("Logging is enabled!");
 #else
