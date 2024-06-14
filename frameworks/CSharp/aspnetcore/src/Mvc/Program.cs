@@ -2,16 +2,26 @@ using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.Extensions.Logging;
 using Mvc;
 using Mvc.Database;
+using OpenTelemetry;
+using OpenTelemetry.Logs;
+using OpenTelemetry.Trace;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 // Remove logging as this is not required for the benchmark
+
 #if LOGGING_ENABLED
-builder.Services.AddHttpLogging(o => { });
+builder.Logging.ClearProviders(); // Clear default logging providers
+builder.Logging.AddOpenTelemetry(options =>
+{
+    options.AddOtlpExporter(otlpOptions =>
+    {
+        otlpOptions.Endpoint = new Uri("http://10.0.2.10:4317");
+    });
+});
 Console.WriteLine("Logging is enabled!");
 #else
 builder.Logging.ClearProviders();
