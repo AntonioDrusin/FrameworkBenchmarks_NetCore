@@ -60,7 +60,7 @@ class FrameworkTest:
         if result != 0:
             return None
 
-        return self.benchmarker.docker_helper.run(self, run_log_dir)
+        return self.benchmarker.docker_helper.run(self, None)
 
     def is_accepting_requests(self):
         '''

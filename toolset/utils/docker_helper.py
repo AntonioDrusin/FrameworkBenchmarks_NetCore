@@ -246,14 +246,15 @@ class DockerHelper:
                 **extra_docker_args
                 )
 
-            watch_thread = Thread(
-                target=watch_container,
-                args=(
-                    container,
-                    "%s.dockerfile" % test.name,
-                ))
-            watch_thread.daemon = True
-            watch_thread.start()
+            if not run_log_dir is None:
+                watch_thread = Thread(
+                    target=watch_container,
+                    args=(
+                        container,
+                        "%s.dockerfile" % test.name,
+                    ))
+                watch_thread.daemon = True
+                watch_thread.start()
 
         except Exception:
             with open(
